@@ -1,0 +1,26 @@
+(package-initialize) ;; You might already have this line
+
+;;; Recursively Load Path
+(let ((default-directory (expand-file-name "~/.emacs.d/nonpackaged/")))
+  (setq load-path
+	(append
+	 (let ((load-path (copy-sequence load-path))) ;; Shadow
+	   (append
+	    (copy-sequence (normal-top-level-add-to-load-path '(".")))
+	    (normal-top-level-add-subdirs-to-load-path)))
+	 load-path)))
+(setq load-path (cons "~/.emacs.d/conf/" load-path))
+
+;;; Configuration
+(load "requires")
+(load "editor")
+(load "c-lang")
+(load "tmux")
+
+;;; MELPA
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+

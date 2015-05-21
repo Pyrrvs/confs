@@ -1,0 +1,8 @@
+cmake-mode
+s
+ac-c-headers
+auto-complete
+go-mode
+cl-lib-highlight
+popup
+groovy-mode
