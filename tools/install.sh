@@ -35,10 +35,10 @@ then
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh || (echoerr "Failed installing oh-my-zsh" ; exit 1)
 fi
 
-if [ ! -e ~/.confs  ]
+if [ ! -e $CONF_HOME  ]
 then
     echo "Cloning configuration repository"
-    git clone https://github.com/Pyrrvs/confs.git .confs || (echoerr "Failed cloning repository" ; exit 1)
+    git clone https://github.com/Pyrrvs/confs.git $CONF_HOME || (echoerr "Failed cloning repository" ; exit 1)
 fi
 
 if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]
@@ -46,7 +46,7 @@ then
     echo "Customizing .zshrc"
     sed -i 's/\# \(DISABLE_AUTO_TITLE="true"\)/\1/' ~/.zshrc
     echo >> ~/.zshrc
-    echo "source $CONF_HOME/zshrc" >> ~/.zshrc
+    echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
 fi
 
 echo "Reloading zsh configuration"
