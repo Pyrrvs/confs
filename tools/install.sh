@@ -52,9 +52,9 @@ fi
 if [ `basename $SHELL` = 'zsh' ]
 then
     echo "Reloading zsh configuration"
-    source ~/.zshrc
+    source ~/.zshrc || (echoerr "Problem occured while reloading zsh configuration" ; exit 1)
 else
     echo "Starting zsh"
-    zsh
+    zsh || (echoerr "Problem occured while starting zsh" ; exit 1)
 fi
-# source ~/.zshrc || (echoerr "Problem occured while reloading zsh configuration" ; exit 1)
+# source ~/.zshrc 
