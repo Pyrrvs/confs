@@ -49,5 +49,12 @@ then
     echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
 fi
 
-echo "Reloading zsh configuration"
-source ~/.zshrc || (echoerr "Problem occured while reloading zsh configuration" ; exit 1)
+if [ `basename $SHELL` = 'zsh' ]
+then
+    echo "Reloading zsh configuration"
+    source ~/.zshrc
+else
+    echo "Starting zsh"
+    zsh
+fi
+# source ~/.zshrc || (echoerr "Problem occured while reloading zsh configuration" ; exit 1)
