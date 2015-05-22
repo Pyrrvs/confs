@@ -49,5 +49,7 @@ then
     echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
 fi
 
+
 echo "Starting zsh"
-zsh || (echoerr "Problem occured while starting zsh" ; exit 1)
+env zsh
+. ~/.zshrc || (echoerr "Problem occured while starting zsh" ; exit 1)
