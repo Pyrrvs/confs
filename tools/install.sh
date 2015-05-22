@@ -52,4 +52,4 @@ fi
 
 echo "Starting zsh"
 env zsh
-. ~/.zshrc || (echoerr "Problem occured while starting zsh" ; exit 1)
+. ~/.zshrc
