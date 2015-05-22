@@ -1,4 +1,4 @@
-alias emacs='\emacs -nw -q --load "~/.confs/emacs/emacs.d/init.el'
+alias emacs='\emacs -nw -q --load "~/.confs/emacs/emacs.d/init.el"'
 alias tmux="tmux -f $CONF_HOME/tmux/tmux.conf"
 
 alias ee="emacs $CONF_HOME/emacs/emacs.d/init.el"

@@ -49,6 +49,8 @@ then
     echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
 fi
 
+echo "Installing emacs dependencies"
+(cd $CONF_HOME/emacs && bash install_dependencies.sh)
 
 echo "Starting zsh"
 env zsh
