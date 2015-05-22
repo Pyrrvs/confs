@@ -1,3 +1,5 @@
+;; Disable autopairing
+(setq skeleton-pair nil)
 (global-auto-complete-mode t)
 (set-default 'ac-sources
              '(ac-source-imenu

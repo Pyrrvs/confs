@@ -1,0 +1,4 @@
+export CONF_HOME=~/.confs
+
+source alias.zsh
+source env.zsh

@@ -1,0 +1,53 @@
+export CONF_HOME=~/.confs
+
+echoerr() { echo "$@" 1>&2; }
+
+zsh=`which zsh`
+if [ -z $zsh ]
+then
+    echoerr "Error: zsh is not installed. Please install zsh and re-run this script"
+    exit 1
+fi
+
+emacs=`which emacs`
+if [ -z $emacs ]
+then
+    echoerr "Error: emacs is not installed. Please install emacs and re-run this script"
+    exit 1
+fi
+
+tmux=`which zsh`
+if [ -z $tmux ]
+then
+    echoerr "Error: tmux is not installed. Please install tmux and re-run this script"
+    exit 1
+fi
+
+if [ ! `basename $zsh` = "zsh" ]
+then
+    echo "Using zsh as default shell"
+    chsh -s $zsh || (echoerr "Failed changing shell to zsh" ; exit 1)
+fi
+
+if [ ! -e ~/.oh-my-zsh ]
+then
+    echo "Installing oh-my-zsh"
+    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh || (echoerr "Failed installing oh-my-zsh" ; exit 1)
+fi
+
+if [ ! -e ~/.confs  ]
+then
+    echo "Cloning configuration repository"
+    git clone https://github.com/Pyrrvs/confs.git .confs || (echoerr "Failed cloning repository" ; exit 1)
+fi
+
+if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]
+then
+    echo "Customizing .zshrc"
+    sed -i 's/\# \(DISABLE_AUTO_TITLE="true"\)/\1/' ~/.zshrc
+    echo >> ~/.zshrc
+    echo "source $CONF_HOME/zshrc" >> ~/.zshrc
+fi
+
+echo "Reloading zsh configuration"
+source ~/.zshrc || (echoerr "Problem occured while reloading zsh configuration" ; exit 1)
