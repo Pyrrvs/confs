@@ -49,6 +49,7 @@ then
     echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
 fi
 
+echo $SHELL
 if [ `basename $SHELL` = 'zsh' ]
 then
     echo "Reloading zsh configuration"
