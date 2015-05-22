@@ -41,21 +41,13 @@ then
     git clone https://github.com/Pyrrvs/confs.git $CONF_HOME || (echoerr "Failed cloning repository" ; exit 1)
 fi
 
-# if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]
-# then
-#     echo "Customizing .zshrc"
-#     sed -i 's/\# \(DISABLE_AUTO_TITLE="true"\)/\1/' ~/.zshrc
-#     echo >> ~/.zshrc
-#     echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
-# fi
-
-echo `basename $SHELL`
-if [ `basename $SHELL` = 'zsh' ]
+if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]
 then
-    echo "Reloading zsh configuration"
-    source ~/.zshrc || (echoerr "Problem occured while reloading zsh configuration" ; exit 1)
-else
-    echo "Starting zsh"
-    zsh || (echoerr "Problem occured while starting zsh" ; exit 1)
+    echo "Customizing .zshrc"
+    sed -i 's/\# \(DISABLE_AUTO_TITLE="true"\)/\1/' ~/.zshrc
+    echo >> ~/.zshrc
+    echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
 fi
-# source ~/.zshrc 
+
+echo "Starting zsh"
+zsh || (echoerr "Problem occured while starting zsh" ; exit 1)
