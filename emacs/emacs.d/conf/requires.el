@@ -5,5 +5,6 @@
 (require 'epy-editing)    ;; For configurations related to editing [optional]
 (require 'epy-bindings)   ;; For my suggested keybindings [optional]
 (require 'epy-nose)       ;; For nose integration
+(require 'go-autocomplete)
 (require 'auto-complete-config)
 (require 'ac-c-headers)

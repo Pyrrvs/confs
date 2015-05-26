@@ -17,6 +17,7 @@
 ;;; configuration
 (load "requires")
 (load "c-lang")
+(load "golang")
 (load "tmux")
 (load "ui")
 (load "editor")
