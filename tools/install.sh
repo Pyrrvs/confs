@@ -9,6 +9,13 @@ then
     exit 1
 fi
 
+git=`which git`
+if [ -z $git ]
+then
+    echoerr "Error: git is not installed. Please install git and re-run this script"
+    exit 1
+fi
+
 emacs=`which emacs`
 if [ -z $emacs ]
 then
