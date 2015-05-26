@@ -30,10 +30,12 @@ then
     exit 1
 fi
 
+read -s -p "Enter Password: " password
+
 if [ ! `basename $zsh` = "zsh" ]
 then
     echo "Using zsh as default shell"
-    chsh -s $zsh || (echoerr "Failed changing shell to zsh" ; exit 1)
+    echo $password | chsh -s $zsh || (echoerr "Failed changing shell to zsh" ; exit 1)
 fi
 
 if [ ! -e ~/.oh-my-zsh ]
@@ -46,13 +48,13 @@ if [ ! -e $CONF_HOME  ]
 then
     echo "Cloning configuration repository"
     git clone https://github.com/Pyrrvs/confs.git $CONF_HOME || (echoerr "Failed cloning repository" ; exit 1)
+    echo "Cloning Tools:"
+    echo "* libphutil"
+    git clone https://github.com/phacility/libphutil.git $CONF_HOME/tools || (echoerr "Failed cloning repository" ; exit 1)
+    echo "* arcanist"
+    git clone git clone https://github.com/phacility/arcanist.git $CONF_HOME/tools || (echoerr "Failed cloning repository" ; exit 1)
 fi
 
-echo "Cloning Tools:"
-echo "* libphutil"
-git clone https://github.com/phacility/libphutil.git $CONF_HOME/tools || (echoerr "Failed cloning repository" ; exit 1)
-echo "* arcanist"
-git clone git clone https://github.com/phacility/arcanist.git $CONF_HOME/tools || (echoerr "Failed cloning repository" ; exit 1)
 
 if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]
 then
