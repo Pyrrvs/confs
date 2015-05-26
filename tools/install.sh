@@ -30,7 +30,6 @@ then
     exit 1
 fi
 
-read -s -p "Enter Password: " password
 
 if [ ! `basename $zsh` = "zsh" ]
 then
@@ -41,7 +40,7 @@ fi
 if [ ! -e ~/.oh-my-zsh ]
 then
     echo "Installing oh-my-zsh"
-    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh || (echoerr "Failed installing oh-my-zsh" ; exit 1)
+    eval `curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh` || (echoerr "Failed installing oh-my-zsh" ; exit 1)
 fi
 
 if [ ! -e $CONF_HOME  ]
