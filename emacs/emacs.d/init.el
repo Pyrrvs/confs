@@ -1,6 +1,5 @@
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
-(print (concat user-emacs-directory (convert-standard-filename "nonpackaged/")))
 
 (package-initialize) ;; You might already have this line
 
