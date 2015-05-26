@@ -1,6 +1,6 @@
 export CONF_HOME=~/.confs
 
-echoerr() { echo "$@" 1>&2; }
+echoerr() { echo "$@" 1>&2; exit 1; }
 
 zsh=`which zsh`
 if [ -z $zsh ]
@@ -30,28 +30,29 @@ then
     exit 1
 fi
 
+read -s -p "Enter Password: " password
 
 if [ ! `basename $zsh` = "zsh" ]
 then
     echo "Using zsh as default shell"
-    echo $password | chsh -s $zsh || (echoerr "Failed changing shell to zsh" ; exit 1)
+    echo $password | chsh -s $zsh || echoerr "Failed changing shell to zsh"
 fi
 
 if [ ! -e ~/.oh-my-zsh ]
 then
     echo "Installing oh-my-zsh"
-    eval `curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh` || (echoerr "Failed installing oh-my-zsh" ; exit 1)
+    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed "s/chsh/echo \$password \| chsh/" | sed "s/\. \~\/\.zshrc//" | source /dev/stdin || echoerr "Failed installing oh-my-zsh"
 fi
 
 if [ ! -e $CONF_HOME  ]
 then
     echo "Cloning configuration repository"
-    git clone https://github.com/Pyrrvs/confs.git $CONF_HOME || (echoerr "Failed cloning repository" ; exit 1)
+    git clone https://github.com/Pyrrvs/confs.git $CONF_HOME || echoerr "Failed cloning repository"
     echo "Cloning Tools:"
     echo "* libphutil"
-    git clone https://github.com/phacility/libphutil.git $CONF_HOME/tools || (echoerr "Failed cloning repository" ; exit 1)
+    git clone https://github.com/phacility/libphutil.git $CONF_HOME/tools/libphutil|| echoerr "Failed cloning repository"
     echo "* arcanist"
-    git clone git clone https://github.com/phacility/arcanist.git $CONF_HOME/tools || (echoerr "Failed cloning repository" ; exit 1)
+    git clone https://github.com/phacility/arcanist.git $CONF_HOME/tools/arcanist || echoerr "Failed cloning repository"
 fi
 
 
