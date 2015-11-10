@@ -2,9 +2,9 @@
     (progn
       (setq goroot (getenv "GOROOT"))
       (setq gopath (getenv "GOPATH"))
-      (setq exec-path (cons (concat goroot (convert-standard-filename "bin")) exec-path))
-      (add-to-list 'exec-path (concat gopath (convert-standard-filename "bin")))
-      (load-file (concat gopath (convert-standard-filename "src/golang.org/x/tools/cmd/oracle/oracle.el")))
+      (setq exec-path (cons (concat (file-name-as-directory goroot) (convert-standard-filename "bin")) exec-path))
+      (add-to-list 'exec-path (concat (file-name-as-directory gopath) (convert-standard-filename "bin")))
+      (load-file (concat (file-name-as-directory gopath) (convert-standard-filename "src/golang.org/x/tools/cmd/oracle/oracle.el")))
       (defun my-go-mode-hook ()
 	; Use goimports instead of go-fmt
 	(setq gofmt-command "goimports")

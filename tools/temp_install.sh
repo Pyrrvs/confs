@@ -58,6 +58,8 @@ then
     echo "export CONF_HOME=\"$CONF_HOME\"" >> $ZSH_CUSTOM/env.zsh
     echo "export ZSH=\"$ZSH\"" >> $ZSH_CUSTOM/env.zsh
     echo "export ZSH_CUSTOM=\"$ZSH_CUSTOM\"" >> $ZSH_CUSTOM/env.zsh
+    echo "export GOROOT=\"$GOROOT\"" >> $ZSH_CUSTOM/env.zsh
+    echo "export GOPATH=\"$GOPATH\"" >> $ZSH_CUSTOM/env.zsh
 fi
     
 if [ ! -e $ZSH ]
