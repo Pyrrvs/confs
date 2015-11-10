@@ -73,6 +73,8 @@ then
     cp $CONF_HOME/cask/cask.el $CONF_HOME/emacs/
 fi
 
+(cd $CONF_HOME/emacs && cask install)
+
 # if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]
 # then
 #     echo "Customizing .zshrc"
