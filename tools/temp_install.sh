@@ -1,5 +1,4 @@
 export CONF_HOME=/tmp/pyrrvs.confs
-export ZSH=$CONF_HOME/oh-my-zsh
 echoerr() { echo "$@" 1>&2; exit 1; }
 
 zsh=`which zsh`
@@ -23,12 +22,12 @@ then
     exit 1
 fi
 
-# tmux=`which tmux`
-# if [ -z $tmux ]
-# then
-#     echoerr "Error: tmux is not installed. Please install tmux and re-run this script"
-#     exit 1
-# fi
+tmux=`which tmux`
+if [ -z $tmux ]
+then
+    echoerr "Error: tmux is not installed. Please install tmux and re-run this script"
+    exit 1
+fi
 
 if [ -d $CONF_HOME/.git  ]
 then
@@ -44,6 +43,16 @@ else
     git clone https://github.com/phacility/arcanist.git $CONF_HOME/tools/arcanist || echoerr "Failed cloning repository"
 fi
 
+export ZSH=$CONF_HOME/oh-my-zsh
+export ZSH_CUSTOM=$CONF_HOME/zsh
+if [ ! -e $ZSH_CUSTOM/env.zsh ]
+then
+    cp -f $CONF_HOME/zsh-templates/env.zsh-template $ZSH_CUSTOM/env.zsh
+    echo "export CONF_HOME=\"$CONF_HOME\"" >> $ZSH_CUSTOM/env.zsh
+    echo "export ZSH=\"$ZSH\"" >> $ZSH_CUSTOM/env.zsh
+    echo "export ZSH_CUSTOM=\"$ZSH_CUSTOM\"" >> $ZSH_CUSTOM/env.zsh
+fi
+    
 if [ ! -e $ZSH ]
 then
     echo "Cloning oh-my-zsh"
