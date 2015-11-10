@@ -29,6 +29,13 @@ then
     exit 1
 fi
 
+golang=`which go`
+if [ ! -z $golang ]
+then
+    echo "Golang is installed. We'll import modules for emacs"
+    go get golang.org/x/tools/cmd/oracle
+fi
+
 if [ -d $CONF_HOME/.git  ]
 then
     echo "Updating configuration"

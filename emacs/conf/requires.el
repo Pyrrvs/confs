@@ -1,3 +1,5 @@
-(require 'go-autocomplete)
+(if (getenv "GOROOT")
+    (require 'go-autocomplete)
+)
 (require 'auto-complete-config)
 (require 'ac-c-headers)
