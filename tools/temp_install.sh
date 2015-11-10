@@ -66,7 +66,7 @@ fi
 if [ ! -d $CONF_HOME/cask ]
 then
     echo "Installing Cask"
-    git clone https://github.com/cask/cask.git
+    git clone https://github.com/cask/cask.git $CONF_HOME/cask
     echo "Bootstraping Cask"
     $CONF_HOME/cask/bin/cask upgrade-cask
 fi
