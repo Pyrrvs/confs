@@ -67,8 +67,10 @@ if [ ! -d $CONF_HOME/cask ]
 then
     echo "Installing Cask"
     git clone https://github.com/cask/cask.git $CONF_HOME/cask
+    export PATH=$PATH:$CONF_HOME/cask/bin
     echo "Bootstraping Cask"
-    $CONF_HOME/cask/bin/cask upgrade-cask
+    cask upgrade-cask
+    cp $CONF_HOME/cask/cask.el $CONF_HOME/emacs/
 fi
 
 # if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]

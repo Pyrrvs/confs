@@ -12,7 +12,6 @@
 (depends-on "flycheck-cask")
 (depends-on "htmlize")
 (depends-on "idle-highlight-mode")
-(depends-on "magit")
 (depends-on "multiple-cursors")
 (depends-on "nyan-mode")
 (depends-on "pallet")
@@ -25,16 +24,16 @@
 (depends-on "use-package")
 (depends-on "web-mode")
 (depends-on "yasnippet")
-
-;; cmake-mode
-;; go-errcheck
-;; direx
-;; s
-;; go-autocomplete
-;; ac-c-headers
-;; auto-complete
-;; go-mode
-;; cl-lib-highlight
-;; popup
-;; ecb
-;; groovy-mode
+(depends-on "magit" "1.4.2")
+(depends-on "cmake-mode")
+(depends-on "go-errcheck")
+(depends-on "direx")
+(depends-on "s")
+(depends-on "go-autocomplete")
+(depends-on "ac-c-headers")
+(depends-on "auto-complete")
+(depends-on "go-mode")
+(depends-on "cl-lib-highlight")
+(depends-on "popup")
+(depends-on "ecb")
+(depends-on "groovy-mode")
