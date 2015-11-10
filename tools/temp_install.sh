@@ -63,6 +63,14 @@ export ZSH=$ZSH" $CONF_HOME/.zshrc > $CONF_HOME/.zshrc-omztemp
     mv -f $CONF_HOME/.zshrc-omztemp $CONF_HOME/.zshrc
 fi
 
+if [ ! -d $CONF_HOME/cask ]
+then
+    echo "Installing Cask"
+    git clone https://github.com/cask/cask.git
+    echo "Bootstraping Cask"
+    $CONF_HOME/cask/bin/cask upgrade-cask
+fi
+
 # if [ -z `grep "$CONF_HOME/zshrc" ~/.zshrc` ]
 # then
 #     echo "Customizing .zshrc"
