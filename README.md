@@ -7,8 +7,8 @@ This configuration can be installed by running one of the following commands in 
 
 #### via curl
 
-`curl -L https://raw.github.com/Pyrrvs/confs/master/scripts/install.sh | sh`
+`sh -c "$(curl -L https://raw.github.com/Pyrrvs/confs/master/scripts/install.sh)"`
 
 #### via wget
 
-`wget https://raw.github.com/Pyrrvs/confs/master/scripts/install.sh -O - | sh`
+`sh -c "$(wget https://raw.github.com/Pyrrvs/confs/master/scripts/install.sh -O -)"`
