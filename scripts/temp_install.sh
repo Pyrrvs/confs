@@ -13,6 +13,7 @@ else
     exit 1
 fi
 
-ZDOTDIR=$TMP_CONF_HOME zsh
+ZDOTDIR=$TMP_CONF_HOME env zsh
+
 echo "Temporary installation session closed, cleaning up."
 rm -rf $TMP_CONF_HOME
