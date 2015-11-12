@@ -1,4 +1,9 @@
-export CONF_HOME=/tmp/pyrrvs.confs
+if [ -z $TMP_CONF_HOME ]
+then
+    export CONF_HOME=~/.pyrrvs.confs
+else
+    export CONF_HOME=$TMP_CONF_HOME
+fi
 echoerr() { echo "$@" 1>&2; exit 1; }
 
 zsh=`which zsh`
@@ -43,6 +48,7 @@ then
 else
     echo "Cloning configuration repository"
     git clone https://github.com/Pyrrvs/confs.git $CONF_HOME || echoerr "Failed cloning repository"
+    mkdir -p $CONF_HOME/tools
     echo "Cloning Tools:"
     echo "* libphutil"
     git clone https://github.com/phacility/libphutil.git $CONF_HOME/tools/libphutil || echoerr "Failed cloning repository"
@@ -92,12 +98,13 @@ fi
 #     echo "source $CONF_HOME/zsh/zshrc" >> ~/.zshrc
 # fi
 
-# echo "Installing emacs dependencies"
-# (cd $CONF_HOME/emacs && bash install_dependencies.sh)
-
-echo "Installation is over, we'll run a customize zsh for you and clean up after you leave"
-#echo "source $CONF_HOME/zshrc" | env zsh -d -f
+echo "Installation is over, we'll run a customized zsh for you"
+if [ -z $TMP_CONF_HOME ]
+then
+    read -s -p "Type your password so we can run chsh: " password
+    echo $password | chsh -s $zsh
+    echo "Saving current zsh configuration in ~/.zshrc.pre-pyrrvs-confs"
+    cp ~/.zshrc ~/.zshrc.pre-pyrrvs-confs
+    echo "\n\nexport ZDOTDIR=\"$CONF_HOME\"" >> ~/.zshrc
+fi
 ZDOTDIR=$CONF_HOME zsh
-
-echo "zsh session closed, cleaning up."
-rm -rf $CONF_HOME
