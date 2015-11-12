@@ -106,5 +106,5 @@ then
     echo "Saving current zsh configuration in ~/.zshrc.pre-pyrrvs-confs"
     cp ~/.zshrc ~/.zshrc.pre-pyrrvs-confs
     echo "\n\nexport ZDOTDIR=\"$CONF_HOME\"" >> ~/.zshrc
+    ZDOTDIR=$CONF_HOME zsh
 fi
-ZDOTDIR=$CONF_HOME zsh
