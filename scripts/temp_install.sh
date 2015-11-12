@@ -1,4 +1,4 @@
-export TMP_CONF_HOME=/tmp/.pyrrvs.confs
+export TMP_CONF_HOME=/tmp/pyrrvs.confs
 
 curl=`which curl`
 wget=`which wget`
